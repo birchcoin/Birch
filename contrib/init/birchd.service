@@ -1,0 +1,22 @@
+[Unit]
+Description=Birch's distributed currency daemon
+After=network.target
+
+[Service]
+User=birchcore
+Group=birchcore
+
+Type=forking
+PIDFile=/var/lib/birchd/birchd.pid
+ExecStart=/usr/bin/birchd -daemon -pid=/var/lib/birchd/birchd.pid \
+-conf=/etc/birchcore/birch.conf -datadir=/var/lib/birchd -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

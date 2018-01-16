@@ -49,8 +49,8 @@ EXTRA_LIBRARIES += libbitcoin_zmq.a
 endif
 
 if BUILD_BITCOIN_LIBS
-lib_LTLIBRARIES = libdashconsensus.la
-LIBBITCOIN_CONSENSUS=libdashconsensus.la
+lib_LTLIBRARIES = libbirchconsensus.la
+LIBBITCOIN_CONSENSUS=libbirchconsensus.la
 else
 LIBBITCOIN_CONSENSUS=
 endif
@@ -60,15 +60,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += dashd
+  bin_PROGRAMS += birchd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += dash-cli dash-tx
+  bin_PROGRAMS += birch-cli birch-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# dash core #
+# birch core #
 BITCOIN_CORE_H = \
   addrdb.h \
   activemasternode.h \
@@ -207,7 +207,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between dashd and dash-qt
+# server: shared between birchd and birch-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -280,7 +280,7 @@ libbitcoin_zmq_a_SOURCES = \
 endif
 
 
-# wallet: shared between dashd and dash-qt, but only linked
+# wallet: shared between birchd and birch-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -343,7 +343,7 @@ crypto_libbitcoin_crypto_a_SOURCES += \
   crypto/sph_skein.h \
   crypto/sph_types.h
 
-# common: shared between dashd, and dash-qt and non-server tools
+# common: shared between birchd, and birch-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -403,7 +403,7 @@ if GLIBC_BACK_COMPAT
 libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between dash-cli and dash-qt
+# cli: shared between birch-cli and birch-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -414,16 +414,16 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-dashd_SOURCES = dashd.cpp
-dashd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-dashd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-dashd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+birchd_SOURCES = birchd.cpp
+birchd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+birchd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+birchd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-dashd_SOURCES += dashd-res.rc
+birchd_SOURCES += birchd-res.rc
 endif
 
-dashd_LDADD = \
+birchd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBUNIVALUE) \
@@ -434,56 +434,56 @@ dashd_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-dashd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+birchd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-dashd_LDADD += libbitcoin_wallet.a
+birchd_LDADD += libbitcoin_wallet.a
 endif
 
-dashd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+birchd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
 
-# dash-cli binary #
-dash_cli_SOURCES = dash-cli.cpp
-dash_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-dash_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-dash_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# birch-cli binary #
+birch_cli_SOURCES = birch-cli.cpp
+birch_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+birch_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+birch_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-dash_cli_SOURCES += dash-cli-res.rc
+birch_cli_SOURCES += birch-cli-res.rc
 endif
 
-dash_cli_LDADD = \
+birch_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL)
-dash_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+birch_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# dash-tx binary #
-dash_tx_SOURCES = dash-tx.cpp
-dash_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-dash_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-dash_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# birch-tx binary #
+birch_tx_SOURCES = birch-tx.cpp
+birch_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+birch_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+birch_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-dash_tx_SOURCES += dash-tx-res.rc
+birch_tx_SOURCES += birch-tx-res.rc
 endif
 
-dash_tx_LDADD = \
+birch_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-dash_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+birch_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# dashconsensus library #
+# birchconsensus library #
 if BUILD_BITCOIN_LIBS
-include_HEADERS = script/dashconsensus.h
-libdashconsensus_la_SOURCES = \
+include_HEADERS = script/birchconsensus.h
+libbirchconsensus_la_SOURCES = \
   crypto/hmac_sha512.cpp \
   crypto/ripemd160.cpp \
   crypto/sha1.cpp \
@@ -492,20 +492,20 @@ libdashconsensus_la_SOURCES = \
   hash.cpp \
   primitives/transaction.cpp \
   pubkey.cpp \
-  script/dashconsensus.cpp \
+  script/birchconsensus.cpp \
   script/interpreter.cpp \
   script/script.cpp \
   uint256.cpp \
   utilstrencodings.cpp
 
 if GLIBC_BACK_COMPAT
-  libdashconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libbirchconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libdashconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libdashconsensus_la_LIBADD = $(LIBSECP256K1)
-libdashconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
-libdashconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbirchconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libbirchconsensus_la_LIBADD = $(LIBSECP256K1)
+libbirchconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libbirchconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #

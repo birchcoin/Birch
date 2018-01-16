@@ -1,0 +1,20 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/birch_bg.qm</file>
+        <file alias="de">locale/birch_de.qm</file>
+        <file alias="en">locale/birch_en.qm</file>
+        <file alias="es">locale/birch_es.qm</file>
+        <file alias="fi">locale/birch_fi.qm</file>
+        <file alias="fr">locale/birch_fr.qm</file>
+        <file alias="it">locale/birch_it.qm</file>
+        <file alias="ja">locale/birch_ja.qm</file>
+        <file alias="pl">locale/birch_pl.qm</file>
+        <file alias="pt">locale/birch_pt.qm</file>
+        <file alias="ru">locale/birch_ru.qm</file>
+        <file alias="sk">locale/birch_sk.qm</file>
+        <file alias="sv">locale/birch_sv.qm</file>
+        <file alias="vi">locale/birch_vi.qm</file>
+        <file alias="zh_CN">locale/birch_zh_CN.qm</file>
+        <file alias="zh_TW">locale/birch_zh_TW.qm</file>
+    </qresource>
+</RCC>
