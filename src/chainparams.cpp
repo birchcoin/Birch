@@ -101,18 +101,18 @@ public:
         consensus.nRuleChangeActivationThreshold = 1916; // 95% of 2016
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1516149857; // January 17, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1546217056; // December 31, 2018
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1486252800; // Feb 5th, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1517788800; // Feb 5th, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1549327456; // Feb 5th, 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1580863456; // Feb 5th, 2020
 
         // Deployment of DIP0001
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].bit = 1;
-        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nStartTime = 1508025600; // Oct 15th, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nTimeout = 1539561600; // Oct 15th, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nStartTime = 1602722656; // Oct 15th, 2020
+        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nTimeout = 1634258656; // Oct 15th, 2021
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nWindowSize = 4032;
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nThreshold = 3226; // 80% of 4032
 
@@ -174,8 +174,7 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             (  0, uint256S("0x000009a0b89865daa5b3c0d24b94c5cdf6eca8648631c89aa4bd4d70fd4c2a49")),
-
-            1507424630, // * UNIX timestamp of last checkpoint block
+            1515724605, // * UNIX timestamp of last checkpoint block
             0,    // * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
             5000        // * estimated number of transactions per day after checkpoint
@@ -220,18 +219,18 @@ public:
         consensus.nRuleChangeActivationThreshold = 1512; // 75% for testchains
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1516149857; // January 17, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1546217056; // December 31, 2018
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1506556800; // September 28th, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1538092800; // September 28th, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1549327456; // 02/05/2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1580863456; // 02/05/2020
 
         // Deployment of DIP0001
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].bit = 1;
-        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nStartTime = 1505692800; // Sep 18th, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nTimeout = 1537228800; // Sep 18th, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nStartTime = 1602722656; // 10/15/2020
+        consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nTimeout = 1634258656; // 10/15/2021
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nWindowSize = 100;
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nThreshold = 50; // 50% of 100
 
@@ -253,8 +252,8 @@ public:
 
         genesis = CreateGenesisBlock(1515724605UL, 1789167UL, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000deef8bed286719bfe67b28bc330277b5dfa270b98998047261541de322f"));
-        assert(genesis.hashMerkleRoot == uint256S("0xb9dafdd581fd3aef824c00ad9ab5156a06b3582b8df5f8ccb1023e466e49f182"));
+		assert(consensus.hashGenesisBlock == uint256S("0x4a83dc85f820c7e081a5164a155498bfef94bbb7b3f4735a22b298af368fb0c7"));
+        assert(genesis.hashMerkleRoot == uint256S("0xa7ae923ee20e708e0d6395623f14555715f4c0a14b1cbe21716284e0cce4dcd2"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -290,9 +289,7 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             (    0, uint256S("0x00000deef8bed286719bfe67b28bc330277b5dfa270b98998047261541de322f")),
-
-
-            1462856598, // * UNIX timestamp of last checkpoint block
+            1515724605, // * UNIX timestamp of last checkpoint block
             0,       // * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
             500         // * estimated number of transactions per day after checkpoint
@@ -364,8 +361,8 @@ public:
 
         genesis = CreateGenesisBlock(1515724605, 0, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x237b60f92d2f84ef7af8d46bc3695e18672d44a54c903a4d4dc337d7912363c9"));
-        assert(genesis.hashMerkleRoot == uint256S("0xdfad404c33c337ff9d8f13b73bba5b48283eb29da2faea56db4c5153f7b13cc7"));
+        assert(consensus.hashGenesisBlock == uint256S("0xb1e0730449325b93a26ca1e8c56c8b272f97e703690ade5863d3db3241be691b"));
+        assert(genesis.hashMerkleRoot == uint256S("0xa7ae923ee20e708e0d6395623f14555715f4c0a14b1cbe21716284e0cce4dcd2"));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();  //! Regtest mode doesn't have any DNS seeds.
@@ -426,3 +423,4 @@ void SelectParams(const std::string& network)
     SelectBaseParams(network);
     pCurrentParams = &Params(network);
 }
+
